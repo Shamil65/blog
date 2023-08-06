@@ -1,14 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html >
 <head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
+	<title>Мой блог</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+
+	<link rel="shortcut icon" href="css/images/favicon.ico" />
+
 </head>
 <body>
-    {% for post in post_list %}
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.description }}</p>
-        {{ post.author }}
-    {% endfor %}
+<div class="shell">
+	<div class="border">
+
+		<div id="navigation">
+			<ul>
+			    <li><a href="#" class="active">Главная</a></li>
+			    <li><a href="#">Админ панель</a></li>
+			    
+			</ul>
+		</div>
+
+		<div id="main">
+			<div id="content" class="left">
+				
+				<div class="projects">
+					<h3>Записи</h3>
+					{% for post in post_list %}
+					<div class="item">
+						<div class="image left">
+							<a href="#"><img src="{{ post.img.url }}" width=200px /></a>
+						</div>
+						<div class="text left">
+							<h4>{{ post.title }}</h4>
+							<p>{{ post.description }}</p>
+							<p>Автор: {{ post.author }}</p>
+						</div>
+						<div class="cl"> </div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			
+			<div class="cl">&nbsp;</div>
+		</div>
+		
+
+	</div>
+	
+	<div id="footer">
+		<p class="copy right">Copyright &copy;  2022 </p>
+	</div>
+</div>
 </body>
 </html>
