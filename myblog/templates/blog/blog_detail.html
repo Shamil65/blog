@@ -60,6 +60,16 @@
 					</form>
 				</div>
 			</div>
+			<div>
+				{% for comment in post.comments_set.all %}
+				<div class="view-comment">
+					<h4>{{ comment.name }}</h4>
+					<p>
+						{{ comment.text_comments }}
+					</p>
+				</div>
+				{% endfor %}
+			</div>
 
 			<div class="cl">&nbsp;</div>
 		</div>
