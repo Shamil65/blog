@@ -40,7 +40,8 @@
 			<div class="form-comment">
 				<h3>Оставить кооментарий</h3>
 				<div>
-					<form action="#" method="post">
+					<form action="{% url 'add_comments' post.id %}" method="post">
+						{% csrf_token %}
 						<div>
 							<label>Ваш комментарий</label>
 							<textarea name="text_comments"></textarea>
