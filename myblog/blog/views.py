@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.base import View
 from .models import Post
+from .form import CommentsForm
 
 class PostView(View):
     '''вывод записи'''
@@ -18,5 +19,11 @@ class PostDetail(View):
 class AddComments(View):
     '''добавление комментариев'''
     def post(self, request, pk):
-        print(request.POST)
-        return redirect('/')
+        form = CommentsForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.post_id = pk
+            form.save()
+        return redirect(f'/{pk}')
+
+
